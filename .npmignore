@@ -1,0 +1,41 @@
+# Source files (we publish the compiled dist/ instead)
+src/
+tsconfig.json
+biome.jsonc
+
+# Development files
+.env
+.env.*
+*.log
+
+# Test files
+tests/
+
+# Git and CI files
+.git/
+.github/
+.gitignore
+
+# Development dependencies
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build artifacts that shouldn't be published
+coverage/
+*.tsbuildinfo
+
+# Only include what's needed for the package
+# The following files are allowed:
+# - README.md
+# - LICENSE  
+# - package.json
+# - dist/**/*

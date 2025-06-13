@@ -1,0 +1,1 @@
+API documentation contained in this directory has been copied over from [Tick v2 API documentation](https://github.com/tick/tick-api) and serves as a reference for the available endpoints and their usage.
