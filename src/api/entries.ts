@@ -52,16 +52,17 @@ export const UpdateEntry = z.object({
 });
 export type UpdateEntryParams = z.infer<typeof UpdateEntry>;
 
-export interface GetEntriesParams {
-	start_date?: string;
-	end_date?: string;
-	updated_at?: string;
-	billable?: boolean;
-	project_id?: number;
-	task_id?: number;
-	user_id?: number;
-	billed?: boolean;
-}
+export const GetEntries = z.object({
+	start_date: z.string().optional().describe("Start date for filtering entries in YYYY-MM-DD format"),
+	end_date: z.string().optional().describe("End date for filtering entries in YYYY-MM-DD format"),
+	updated_at: z.string().optional().describe("Filter entries updated after this ISO 8601 timestamp"),
+	billable: z.boolean().optional().describe("Filter entries by billable status"),
+	project_id: z.number().optional().describe("Filter entries by project ID"),
+	task_id: z.number().optional().describe("Filter entries by task ID"),
+	user_id: z.number().optional().describe("Filter entries by user ID"),
+	billed: z.boolean().optional().describe("Filter entries by billed status"),
+});
+export type GetEntriesParams = z.infer<typeof GetEntries>;
 
 /**
  * Get entries that meet the provided parameters
