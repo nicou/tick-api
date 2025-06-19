@@ -1,6 +1,6 @@
 {
   "name": "tick-api",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "TypeScript/JavaScript client for the Tick v2 API providing time tracking functionality",
   "keywords": ["tickspot", "tick", "time-tracking", "api", "client", "typescript"],
   "homepage": "https://github.com/nicou/tick-api#readme",
