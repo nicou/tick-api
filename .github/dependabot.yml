@@ -8,10 +8,6 @@ updates:
       day: "monday"
       time: "04:00"
     open-pull-requests-limit: 5
-    reviewers:
-      - "nicou"
-    assignees:
-      - "nicou"
     commit-message:
       prefix: "chore"
       include: "scope"
@@ -24,10 +20,6 @@ updates:
       day: "monday"
       time: "04:00"
     open-pull-requests-limit: 5
-    reviewers:
-      - "nicou"
-    assignees:
-      - "nicou"
     commit-message:
       prefix: "ci"
       include: "scope"
