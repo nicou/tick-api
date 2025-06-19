@@ -79,3 +79,29 @@ The `TickClient` provides methods for the following API endpoints:
 - `createEntry(params)` - Create new entry
 - `updateEntry(id, params)` - Update entry
 - `deleteEntry(id)` - Delete entry
+
+### Testing
+
+This package includes both unit tests and end-to-end tests:
+
+#### Unit Tests
+Run the unit tests to verify the client instantiation and method availability:
+```bash
+npm test
+```
+
+#### End-to-End Tests
+E2E tests run against the real TickSpot API and test all non-destructive getter functions.
+
+**Setup:**
+1. Copy the environment example file: `cp .env.example .env`
+2. Fill in your TickSpot credentials in `.env`
+3. Build the project: `npm run build`
+
+**Run E2E tests:**
+```bash
+# Run all E2E tests
+npm run test:e2e
+```
+
+See [`tests/e2e/README.md`](./tests/e2e/README.md) for detailed E2E test documentation.
