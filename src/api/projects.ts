@@ -4,7 +4,7 @@ import { createHeaders, createUrl } from "./util";
 export const Project = z.object({
 	id: z.number().describe("Unique identifier for the project"),
 	name: z.string().describe("Project name or title"),
-	budget: z.number().describe("Total budgeted hours for the project"),
+	budget: z.number().nullable().describe("Total budgeted hours for the project"),
 	date_closed: z.string().nullable().describe("ISO 8601 date when project was closed, null if open"),
 	notifications: z.boolean().describe("Whether notifications are enabled for this project"),
 	billable: z.boolean().describe("Whether time logged to this project is billable"),
@@ -39,7 +39,7 @@ export type ProjectWithDetails = z.infer<typeof ProjectWithDetails>;
 
 export const CreateProject = z.object({
 	name: z.string().describe("Project name or title"),
-	budget: z.number().describe("Total budgeted hours for the project"),
+	budget: z.number().nullable().describe("Total budgeted hours for the project"),
 	notifications: z.boolean().describe("Whether to enable notifications for this project"),
 	billable: z.boolean().describe("Whether time logged to this project is billable"),
 	recurring: z.boolean().describe("Whether this is a recurring project"),
@@ -50,7 +50,7 @@ export type CreateProjectParams = z.infer<typeof CreateProject>;
 
 export const UpdateProject = z.object({
 	name: z.string().optional().describe("Project name or title to update"),
-	budget: z.number().optional().describe("Total budgeted hours to update"),
+	budget: z.number().nullable().optional().describe("Total budgeted hours to update"),
 	notifications: z.boolean().optional().describe("Whether to enable notifications"),
 	billable: z.boolean().optional().describe("Whether time logged is billable"),
 	recurring: z.boolean().optional().describe("Whether this is a recurring project"),

@@ -2,7 +2,7 @@ import { z } from "zod/v4";
 import { createHeaders, createUrl } from "./util";
 
 export const Entry = z.object({
-	id: z.string().describe("Unique identifier for the time entry"),
+	id: z.union([z.string(), z.number()]).transform(String).describe("Unique identifier for the time entry"),
 	date: z.string().describe("Date the time was logged in YYYY-MM-DD format"),
 	hours: z.number().describe("Number of hours logged for this entry"),
 	notes: z.string().describe("Description or notes about the work performed"),
@@ -15,9 +15,9 @@ export const Entry = z.object({
 export type Entry = z.infer<typeof Entry>;
 
 export const Task = z.object({
-	id: z.string().describe("Unique identifier for the task"),
+	id: z.union([z.string(), z.number()]).transform(String).describe("Unique identifier for the task"),
 	name: z.string().describe("Task name or description"),
-	budget: z.number().describe("Budgeted hours allocated for this task"),
+	budget: z.number().nullable().describe("Budgeted hours allocated for this task"),
 	position: z.number().describe("Display order position of the task"),
 	project_id: z.number().describe("ID of the project this task belongs to"),
 	date_closed: z.string().nullable().describe("ISO 8601 date when task was closed, null if open"),

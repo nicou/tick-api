@@ -2,14 +2,14 @@ import { z } from "zod/v4";
 import { createHeaders, createUrl } from "./util";
 
 export const Task = z.object({
-	id: z.string().describe("Unique identifier for the task"),
+	id: z.union([z.string(), z.number()]).transform(String).describe("Unique identifier for the task"),
 	name: z.string().describe("Task name or description"),
-	budget: z.number().describe("Budgeted hours allocated for this task"),
+	budget: z.number().nullable().describe("Budgeted hours allocated for this task"),
 	position: z.number().describe("Display order position of the task"),
 	project_id: z.number().describe("ID of the project this task belongs to"),
 	date_closed: z.string().nullable().describe("ISO 8601 date when task was closed, null if open"),
 	billable: z.boolean().describe("Whether time logged to this task is billable"),
-	url: z.string().describe("API URL for this specific task resource"),
+	url: z.string().optional().describe("API URL for this specific task resource"),
 	created_at: z.string().describe("ISO 8601 timestamp when task was created"),
 	updated_at: z.string().describe("ISO 8601 timestamp when task was last modified"),
 });
@@ -18,7 +18,7 @@ export type Task = z.infer<typeof Task>;
 export const Project = z.object({
 	id: z.number().describe("Unique identifier for the project"),
 	name: z.string().describe("Project name or title"),
-	budget: z.number().describe("Total budgeted hours for the project"),
+	budget: z.number().nullable().describe("Total budgeted hours for the project"),
 	date_closed: z.string().nullable().describe("ISO 8601 date when project was closed, null if open"),
 	notifications: z.boolean().describe("Whether notifications are enabled for this project"),
 	billable: z.boolean().describe("Whether time logged to this project is billable"),
@@ -34,7 +34,7 @@ export type Project = z.infer<typeof Project>;
 export const EntriesSummary = z.object({
 	count: z.number().describe("Number of time entries logged to this task"),
 	url: z.string().describe("API URL to fetch task's time entries"),
-	updated_at: z.string().describe("ISO 8601 timestamp when entries were last modified"),
+	updated_at: z.string().nullable().describe("ISO 8601 timestamp when entries were last modified"),
 });
 export type EntriesSummary = z.infer<typeof EntriesSummary>;
 
@@ -47,7 +47,7 @@ export type TaskWithDetails = z.infer<typeof TaskWithDetails>;
 
 export const CreateTask = z.object({
 	name: z.string().describe("Task name or description"),
-	budget: z.number().describe("Budgeted hours to allocate for this task"),
+	budget: z.number().nullable().describe("Budgeted hours to allocate for this task"),
 	project_id: z.number().describe("ID of the project this task belongs to"),
 	billable: z.boolean().describe("Whether time logged to this task is billable"),
 });
@@ -55,7 +55,7 @@ export type CreateTaskParams = z.infer<typeof CreateTask>;
 
 export const UpdateTask = z.object({
 	name: z.string().optional().describe("Task name or description to update"),
-	budget: z.number().optional().describe("Budgeted hours to update"),
+	budget: z.number().nullable().optional().describe("Budgeted hours to update"),
 	project_id: z.number().optional().describe("ID of project to reassign task to"),
 	billable: z.boolean().optional().describe("Whether time logged to this task is billable"),
 });
